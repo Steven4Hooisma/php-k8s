@@ -27,7 +27,7 @@ class VolumeTest extends TestCase
 
         $this->assertEquals([
             'name' => 'some-volume',
-            'emptyDir' => (object) new stdClass,
+            'emptyDir' => (object) new stdClass(),
         ], $volume->toArray());
 
         $this->assertEquals([

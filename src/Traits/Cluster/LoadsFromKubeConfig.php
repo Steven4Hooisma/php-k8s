@@ -48,7 +48,7 @@ trait LoadsFromKubeConfig
     public static function fromKubeConfigVariable(string $context = null)
     {
         /** @var \RenokiCo\PhpK8s\KubernetesCluster $this */
-        $cluster = new static;
+        $cluster = new static();
 
         if (! isset($_SERVER['KUBECONFIG'])) {
             return $cluster;
@@ -86,7 +86,7 @@ trait LoadsFromKubeConfig
     public static function fromKubeConfigYaml(string $yaml, string $context = null)
     {
         /** @var \RenokiCo\PhpK8s\KubernetesCluster $this */
-        $cluster = new static;
+        $cluster = new static();
 
         return $cluster->loadKubeConfigFromArray(Yaml::parse($yaml), $context);
     }
@@ -100,7 +100,7 @@ trait LoadsFromKubeConfig
      */
     public static function fromKubeConfigYamlFile(string $path = '/.kube/config', string $context = null)
     {
-        return (new static)->fromKubeConfigYaml(file_get_contents($path), $context);
+        return (new static())->fromKubeConfigYaml(file_get_contents($path), $context);
     }
 
     /**
@@ -112,7 +112,7 @@ trait LoadsFromKubeConfig
      */
     public static function fromKubeConfigArray(array $kubeConfigArray, string $context = null)
     {
-        $cluster = new static;
+        $cluster = new static();
 
         return $cluster->loadKubeConfigFromArray($kubeConfigArray, $context);
     }

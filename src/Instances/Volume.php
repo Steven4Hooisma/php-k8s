@@ -17,7 +17,7 @@ class Volume extends Instance
     public function emptyDirectory(string $name)
     {
         return $this->setAttribute('name', $name)
-            ->setAttribute('emptyDir', (object) new stdClass);
+            ->setAttribute('emptyDir', (object) new stdClass());
     }
 
     /**

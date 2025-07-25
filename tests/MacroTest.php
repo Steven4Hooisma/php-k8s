@@ -44,11 +44,11 @@ class MacroTest extends TestCase
         Kinds\NewResource::register('nr');
 
         $this->assertInstanceOf(Kinds\NewResource::class, K8s::newResource());
-        $this->assertInstanceOf(Kinds\NewResource::class, (new K8s)->newResource());
+        $this->assertInstanceOf(Kinds\NewResource::class, (new K8s())->newResource());
         $this->assertInstanceOf(Kinds\NewResource::class, $this->cluster->newResource());
 
         $this->assertInstanceOf(Kinds\NewResource::class, K8s::nr());
-        $this->assertInstanceOf(Kinds\NewResource::class, (new K8s)->nr());
+        $this->assertInstanceOf(Kinds\NewResource::class, (new K8s())->nr());
         $this->assertInstanceOf(Kinds\NewResource::class, $this->cluster->nr());
     }
 }

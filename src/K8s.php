@@ -154,6 +154,6 @@ class K8s
             return static::macroCallStatic($method, $parameters);
         }
 
-        return new static;
+        return new static();
     }
 }

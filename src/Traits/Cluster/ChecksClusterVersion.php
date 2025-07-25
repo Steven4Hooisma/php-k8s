@@ -59,7 +59,8 @@ trait ChecksClusterVersion
         $this->loadClusterVersion();
 
         return Semver::gte(
-            $this->kubernetesVersion, $kubernetesVersion
+            $this->kubernetesVersion,
+            $kubernetesVersion
         );
     }
 
@@ -75,7 +76,8 @@ trait ChecksClusterVersion
         $this->loadClusterVersion();
 
         return Semver::lt(
-            $this->kubernetesVersion, $kubernetesVersion
+            $this->kubernetesVersion,
+            $kubernetesVersion
         );
     }
 }
