@@ -10,6 +10,7 @@ use RenokiCo\PhpK8s\Exceptions\KubeConfigClusterNotFound;
 use RenokiCo\PhpK8s\Exceptions\KubeConfigContextNotFound;
 use RenokiCo\PhpK8s\Exceptions\KubeConfigUserNotFound;
 use RenokiCo\PhpK8s\Kinds\K8sResource;
+use Symfony\Component\Yaml\Yaml;
 
 trait LoadsFromKubeConfig
 {
@@ -57,7 +58,7 @@ trait LoadsFromKubeConfig
         $kubeconfig = [];
 
         foreach ($paths as $path) {
-            if (! @is_readable($path) || ($yaml = yaml_parse_file($path)) === false) {
+            if (! @is_readable($path) || ($yaml = Yaml::parseFile($path)) === false) {
                 continue;
             }
 
@@ -87,7 +88,7 @@ trait LoadsFromKubeConfig
         /** @var \RenokiCo\PhpK8s\KubernetesCluster $this */
         $cluster = new static;
 
-        return $cluster->loadKubeConfigFromArray(yaml_parse($yaml), $context);
+        return $cluster->loadKubeConfigFromArray(Yaml::parse($yaml), $context);
     }
 
     /**

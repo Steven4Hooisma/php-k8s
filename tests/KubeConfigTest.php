@@ -8,6 +8,7 @@ use RenokiCo\PhpK8s\Exceptions\KubeConfigContextNotFound;
 use RenokiCo\PhpK8s\Exceptions\KubeConfigUserNotFound;
 use RenokiCo\PhpK8s\Kinds\K8sResource;
 use RenokiCo\PhpK8s\KubernetesCluster;
+use Symfony\Component\Yaml\Yaml;
 
 class KubeConfigTest extends TestCase
 {
@@ -229,7 +230,7 @@ class KubeConfigTest extends TestCase
 
     public function test_kube_config_from_array_with_base64_encoded_ssl()
     {
-        $cluster = KubernetesCluster::fromKubeConfigArray(yaml_parse_file(__DIR__.'/cluster/kubeconfig.yaml'), 'minikube');
+        $cluster = KubernetesCluster::fromKubeConfigArray(Yaml::parseFile(__DIR__.'/cluster/kubeconfig.yaml'), 'minikube');
 
         [
             'verify' => $caPath,
