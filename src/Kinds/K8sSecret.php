@@ -90,4 +90,14 @@ class K8sSecret extends K8sResource implements InteractsWithK8sCluster, Watchabl
     {
         return $this->removeAttribute("data.{$name}");
     }
+
+    public function setType(string $type): self
+    {
+        return $this->setAttribute('type', $type);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->getAttribute('type');
+    }
 }

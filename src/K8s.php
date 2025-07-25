@@ -8,6 +8,7 @@ use Illuminate\Support\Traits\Macroable;
 use RenokiCo\PhpK8s\Kinds\K8sResource;
 use RenokiCo\PhpK8s\Traits\InitializesInstances;
 use RenokiCo\PhpK8s\Traits\InitializesResources;
+use Symfony\Component\Yaml\Yaml;
 
 class K8s
 {
@@ -27,7 +28,7 @@ class K8s
      */
     public static function fromYaml($cluster, string $yaml)
     {
-        $instances = collect(yaml_parse($yaml, -1))->reduce(function ($classes, $yaml) use ($cluster) {
+        $instances = collect(Yaml::parse($yaml, -1))->reduce(function ($classes, $yaml) use ($cluster) {
             $kind = $yaml['kind'];
             $apiVersion = $yaml['apiVersion'];
 
